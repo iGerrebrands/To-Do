@@ -8,13 +8,14 @@ var SERVER = {
 
 app
     .get('/', function (req, res) {
-        res.send("" +
+        res.send(
             "ToDo API: <br>" +
             "/register <br>" +
             "/login <br>" +
             "/todo/create?title&text <br>" +
             "/todo/delete?id <br>" +
-            "/todo/update?id&title&text <br>");
+            "/todo/update?id&title&text <br>"
+        );
 
     })
     .get('/register', function (req, res) {
