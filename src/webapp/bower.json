@@ -5,7 +5,7 @@
   "authors": [
     "Ian Gerrebrands"
   ],
-  "license": "NONE",
+  "license": "MIT",
   "keywords": [
     "Javascript",
     "Challenge",
@@ -21,5 +21,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap-css": "~3.3.6",
+    "jquery": "~2.2.0",
+    "underscore": "~1.8.3"
+  }
 }
