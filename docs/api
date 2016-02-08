@@ -1,0 +1,12 @@
+ToDo API:
+
+Register request:
+/register?username&password1&password2
+
+Login request
+/login?username&password
+
+
+/todo/create?title&text
+/todo/delete?id
+/todo/update?id&title&text
