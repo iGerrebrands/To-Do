@@ -37,6 +37,17 @@ module.exports = function (grunt) {
                 }
             }
         },
+        copy: {
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        src: ['js/**/*.html'],
+                        dest: 'build/'
+                    }
+                ]
+            }
+        },
         watch: {
             options: {
                 livereload: true
@@ -52,6 +63,11 @@ module.exports = function (grunt) {
             css: {
                 files: ['scss/**/*.scss'],
                 tasks: ['sass', 'cssmin']
+            },
+            clean: {
+                build: {
+                    src: ['build']
+                }
             }
         }
     });
@@ -62,10 +78,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
 
 
 
     //Register Tasks
-    grunt.registerTask('default', ['uglify', 'sass', 'cssmin', 'connect', 'watch']);
+    grunt.registerTask('default', ['uglify', 'sass', 'cssmin', 'copy', 'connect', 'watch']);
+    grunt.registerTask('clean-build', ['clean']);
 };
