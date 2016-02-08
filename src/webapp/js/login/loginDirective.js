@@ -1,0 +1,26 @@
+(function (){
+    angular
+        .module('todo-app')
+        .directive('loginForm', ['$auth', function(
+                $auth
+            ) {
+                return {
+                    templateUrl: 'build/js/login/loginFormView.html',
+                    link: function (scope) {
+                        scope.login = function () {
+                            $auth.login({
+                                name: scope.username,
+                                password: scope.password
+                            })
+                            .then(function (response) {
+                                console.log(response);
+                            })
+                            .catch(function (response) {
+                                console.log(response.status);
+                            });
+                        }
+                    }
+                }
+            }]
+        );
+})();

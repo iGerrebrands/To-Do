@@ -54,7 +54,7 @@ module.exports = function (grunt) {
             },
             html: {
                 files: ['index.html', 'js/**/*.html'],
-                tasks: []
+                tasks: ['copy']
             },
             js: {
                 files: ['js/**/*.js'],
@@ -63,11 +63,11 @@ module.exports = function (grunt) {
             css: {
                 files: ['scss/**/*.scss'],
                 tasks: ['sass', 'cssmin']
-            },
-            clean: {
-                build: {
-                    src: ['build']
-                }
+            }
+        },
+        clean: {
+            build: {
+                src: ['build']
             }
         }
     });

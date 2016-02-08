@@ -1,11 +1,14 @@
 (function () {
     angular
         .module('todo-app', [
-            'ngRoute'
+            'ngRoute',
+            'satellizer'
         ])
-        .config(['$routeProvider', function (
-            $routeProvider
+        .config(['$routeProvider', '$authProvider', function (
+            $routeProvider,
+            $authProvider
         ) {
+            $authProvider.loginUrl = 'http://localhost:6005/auth';
             $routeProvider
                 .when('/', {
                     templateUrl: 'build/js/login/loginView.html',
@@ -19,12 +22,33 @@
                     templateUrl: 'build/js/register/registerView.html',
                     access: {
                         required: {
-                            login: false
+                            login: true
                         }
                     }
                 })
                 .otherwise({
                     redirectTo: '/'
                 });
+        }])
+        .run(['$location', '$rootScope', '$auth', function (
+            $location,
+            $rootScope,
+            $auth
+        ) {
+            $rootScope.$on('$routeChangeSuccess', function (event, current) {
+                if (current.$$route && current.$$route.access) {
+                    if ($auth.isAuthenticated()) {
+                        var role = $auth.getPayload().roles[0];
+
+                        if (current.$$route.access.required.role !== role) {
+                            $location.path('/');
+                        }
+                    } else {
+                        if (current.$$route.access.required.login) {
+                            $location.path('/');
+                        }
+                    }
+                }
+            });
         }]);
 })();
