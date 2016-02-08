@@ -1,0 +1,25 @@
+{
+  "name": "todo-webapp",
+  "description": "AngularJS challenge",
+  "main": "index.html",
+  "authors": [
+    "Ian Gerrebrands"
+  ],
+  "license": "NONE",
+  "keywords": [
+    "Javascript",
+    "Challenge",
+    "AngularJS",
+    "TODO"
+  ],
+  "homepage": "https://github.com/iGerrebrands/To-Do",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
