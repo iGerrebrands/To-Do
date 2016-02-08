@@ -2,4 +2,5 @@ src/server/node_modules/
 src/webapp/node_modules/
 src/webapp/.sass-cache/
 src/webapp/build/
+src/webapp/bower_components/
 .idea/
