@@ -6,7 +6,7 @@ var requestHandler = require('./modules/requestHandler');
 var SERVER = {
   PORT: 6005
 };
-//ex
+//exi
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
