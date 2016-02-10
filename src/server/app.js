@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 var requestHandler = require('./modules/requestHandler');
 
 var SERVER = {
@@ -28,29 +29,27 @@ app
         }
     })
     .post('/auth', function (req, res) {
-        res.end("yes");
+        if (requestHandler.handler.validateLogin(req.body.username, req.body.password)) {
+            var token = jwt.sign({
+                id: 12,
+                name: "Ian",
+                klas: "3J"
+            }, "J2A23rHF", {
+                expiresInMinutes: 240 // expires in 4 hours
+            });
+            res.json({
+                success: true,
+                message: 'Enjoy your token!',
+                token: token
+            });
+        }
+
         //res.json({ success: false, message: 'Authentication failed. User not found.' });
-        //res.send();
-        //if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.LOGIN, req.query, res)) {
-        //    if (requestHandler.handler.validateLogin(req.query.username, req.query.password)) {
-        //        //TODO MAKE A COOKIE OR SOMETHING>>>>>>>
-        //        res.json({
-        //            token: "grhbqyefbYUGbugEB23YH87FbwyuGF3fuI3H*yfgw",
-        //            userID: 1421
-        //        });
-        //    } else {
-        //        res.status(401);
-        //    }
-        //}
-        //res.send();
+
     })
     .get('/data', function (req, res) {
         if(req.query.id != undefined) {
-            res.json({
-                id: req.query.id,
-                name: "Ian",
-                klas: "3J"
-            });
+
         }
     });
 

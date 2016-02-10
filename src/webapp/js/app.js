@@ -38,8 +38,9 @@
             $rootScope.$on('$routeChangeSuccess', function (event, current) {
                 if (current.$$route && current.$$route.access) {
                     if ($auth.isAuthenticated()) {
-                        var role = $auth.getPayload().roles[0];
 
+                        //var role = $auth.getPayload().roles[0];
+                        var role = "role";
                         if (current.$$route.access.required.role !== role) {
                             $location.path('/');
                         }

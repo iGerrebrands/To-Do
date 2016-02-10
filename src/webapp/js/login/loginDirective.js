@@ -9,11 +9,12 @@
                     link: function (scope) {
                         scope.login = function () {
                             $auth.login({
-                                name: scope.username,
+                                username: scope.username,
                                 password: scope.password
                             })
                             .then(function (response) {
                                 console.log(response);
+                                console.log($auth.getPayload());
                             })
                             .catch(function (response) {
                                 console.log(response.status);
