@@ -15,8 +15,8 @@ exports.handler = {
         }
         return true;
     },
-    validateLogin: function (username, password) {
-        return username === "ian" && password === "hallo";
+    validateLogin: function (User, username, password) {
+        return User.find({username: username, password: password });
     },
     register: function(userData) {
         return true;
