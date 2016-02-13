@@ -14,8 +14,6 @@
                                 password: scope.password
                             })
                             .then(function (response) {
-                                console.log(response);
-                                console.log($auth.getPayload()._doc.role);
                                 $location.path("/test");
                             })
                             .catch(function (response) {
