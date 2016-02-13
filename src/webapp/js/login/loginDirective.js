@@ -1,8 +1,9 @@
 (function (){
     angular
         .module('todo-app')
-        .directive('loginForm', ['$auth', function(
-                $auth
+        .directive('loginForm', ['$auth', '$location', function(
+                $auth,
+                $location
             ) {
                 return {
                     templateUrl: 'build/js/login/loginFormView.html',
@@ -14,10 +15,11 @@
                             })
                             .then(function (response) {
                                 console.log(response);
-                                console.log($auth.getPayload());
+                                console.log($auth.getPayload()._doc.role);
+                                $location.path("/test");
                             })
                             .catch(function (response) {
-                                console.log(response.status);
+                                // TODO: HANDLE ERROR console.log(response.status);
                             });
                         }
                     }

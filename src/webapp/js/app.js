@@ -14,7 +14,8 @@
                     templateUrl: 'build/js/login/loginView.html',
                     access: {
                         required: {
-                            login: false
+                            login: false,
+                            roles: []
                         }
                     }
                 })
@@ -22,7 +23,17 @@
                     templateUrl: 'build/js/register/registerView.html',
                     access: {
                         required: {
-                            login: true
+                            login: false,
+                            roles: []
+                        }
+                    }
+                })
+                .when('/test', {
+                    templateUrl: 'build/js/register/registerView.html',
+                    access: {
+                        required: {
+                            login: true,
+                            roles: ['member', 'admin']
                         }
                     }
                 })
@@ -38,10 +49,8 @@
             $rootScope.$on('$routeChangeSuccess', function (event, current) {
                 if (current.$$route && current.$$route.access) {
                     if ($auth.isAuthenticated()) {
-
-                        //var role = $auth.getPayload().roles[0];
-                        var role = "role";
-                        if (current.$$route.access.required.role !== role) {
+                        var role = $auth.getPayload()._doc.role;
+                        if (current.$$route.access.required.roles.length !== 0 && !_.contains(current.$$route.access.required.roles, role)) {
                             $location.path('/');
                         }
                     } else {

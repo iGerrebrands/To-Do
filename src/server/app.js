@@ -18,10 +18,14 @@ var db = mongoose.connection;
         console.log("Connected to DB");
         var userSchema = mongoose.Schema({
             username: { type: String, required: true, index: { unique: true } },
-            password: { type: String, required: true }
+            password: { type: String, required: true },
+            role: { type: String, required: true}
         });
 
         var User = mongoose.model('User', userSchema);
+
+        var user = new User({ username: "ian10013", password: "password", role: "admin" });
+        user.save();
 
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
@@ -50,20 +54,22 @@ var db = mongoose.connection;
             .post('/auth', function (req, res) {
                 var username = req.body.username;
                 var password = req.body.password;
-                requestHandler.handler.validateLogin(User, username, password).exec( function (err, doc) {
-                    if (doc.length > 0) {
-                        var token = jwt.sign(doc[0], SERVER.SECRET, {
-                            expiresInMinutes: 240
-                        });
-                        res.json({
-                            success: true,
-                            message: 'Login successful!',
-                            token: token
-                        });
-                    } else {
-                        res.statusCode = 401;
-                        res.send();
-                    }
+                requestHandler.handler.validateLogin(User, username, password)
+                    .exec( function (err, doc) {
+                        if (doc.length > 0) {
+                            console.log(doc[0]);
+                            var token = jwt.sign(doc[0], SERVER.SECRET, {
+                                expiresIn: 7200
+                            });
+                            res.json({
+                                success: true,
+                                message: 'Login successful!',
+                                token: token
+                            });
+                        } else {
+                            res.statusCode = 401;
+                            res.send();
+                        }
                 });
             })
             .get('/data', function (req, res) {
