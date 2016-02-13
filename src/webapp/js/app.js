@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('todo-app', [
+        .module('todoApp', [
             'ngRoute',
             'satellizer'
         ])

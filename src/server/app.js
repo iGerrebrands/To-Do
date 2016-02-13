@@ -72,6 +72,11 @@ var db = mongoose.connection;
                         }
                 });
             })
+            .post('/register', function (req, res) {
+                console.log(req.body);
+
+                res.send("Hallo");
+            })
             .get('/data', function (req, res) {
                 if(req.query.id != undefined) {
 
