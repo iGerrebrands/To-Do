@@ -52,30 +52,57 @@ var db = mongoose.connection;
                 }
             })
             .post('/auth', function (req, res) {
-                var username = req.body.username;
-                var password = req.body.password;
-                requestHandler.handler.validateLogin(User, username, password)
-                    .exec( function (err, doc) {
-                        if (doc.length > 0) {
-                            console.log(doc[0]);
-                            var token = jwt.sign(doc[0], SERVER.SECRET, {
-                                expiresIn: 7200
-                            });
-                            res.json({
-                                success: true,
-                                message: 'Login successful!',
-                                token: token
-                            });
-                        } else {
-                            res.statusCode = 401;
-                            res.send();
-                        }
-                });
+                if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.LOGIN, req.body, res)) {
+                    var username = req.body.username;
+                    var password = req.body.password;
+                    User.find({username: username, password: password })
+                        .exec( function (err, doc) {
+                            if (doc.length > 0) {
+                                var token = jwt.sign(doc[0], SERVER.SECRET, {
+                                    expiresIn: 7200
+                                });
+                                res.json({
+                                    success: true,
+                                    message: 'Login successful!',
+                                    token: token
+                                });
+                            } else {
+                                res.statusCode = 401;
+                                res.send();
+                            }
+                        });
+                }
             })
             .post('/register', function (req, res) {
-                console.log(req.body);
+                User.findOne({username: req.body.username})
+                    .exec( function (err, doc) {
+                        if (doc === null) {
+                            if (req.body.password.length < 5) {
+                                res.json({
+                                    accept: false,
+                                    message: "Password must be at least 5 characters long"
+                                });
+                            } else {
+                                if (req.body.password === req.body.passwordRepeat) {
+                                    res.json({
+                                        accept: true,
+                                        message: "Registration successful"
+                                    });
+                                } else {
+                                    res.json({
+                                        accept: false,
+                                        message: "Password is not matching with the repeat"
+                                    });
+                                }
+                            }
+                        } else {
+                            res.json({
+                                accept: false,
+                                message: "That username is already taken!"
+                            });
+                        }
+                });
 
-                res.send("Hallo");
             })
             .get('/data', function (req, res) {
                 if(req.query.id != undefined) {

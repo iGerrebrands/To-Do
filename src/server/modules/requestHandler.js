@@ -1,6 +1,5 @@
 exports.handler = {
     version: "0.0.1",
-    //REQUEST CONSTANT WITH ARRAY OF REQUIRED DATA
     REQUEST: {
         LOGIN: ["username", "password"],
         REGISTER: ["username", "password"],
@@ -13,12 +12,6 @@ exports.handler = {
                 return false;
             }
         }
-        return true;
-    },
-    validateLogin: function (User, username, password) {
-        return User.find({username: username, password: password });
-    },
-    register: function(userData) {
         return true;
     },
     createToDo: function (toDoData) {
