@@ -84,6 +84,8 @@ var db = mongoose.connection;
                                 });
                             } else {
                                 if (req.body.password === req.body.passwordRepeat) {
+                                    var regUser = new User({ username: req.body.username, password: req.body.password, role: "member" });
+                                    regUser.save();
                                     res.json({
                                         accept: true,
                                         message: "Registration successful"

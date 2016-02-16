@@ -21,13 +21,8 @@
             };
 
             this.send = function (data) {
-                $http
-                    .post("http://localhost:6005/register", data)
-                    .then(function (val) {
-                        console.log(val);
-                    }, function (val) {
-                        console.log(val);
-                    });
+                return $http
+                        .post("http://localhost:6005/register", data);
             };
         }]);
 })();
