@@ -6,12 +6,15 @@
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/satellizer/satellizer.js"></script>
     <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="build/css/style.css">
 </head>
-<body>
-    <main>
+<body ng-app="todoApp">
+    <main ng-view>
 
     </main>
 <script type="text/javascript" src="build/js/app.min.js"></script>
