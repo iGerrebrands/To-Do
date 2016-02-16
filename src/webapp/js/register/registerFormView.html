@@ -1,0 +1,17 @@
+<h1>Register</h1>
+<span>{{message}}</span>
+<form name="register-form">
+    Username: <input type="text"
+                     name="username"
+                     ng-model="username"/>
+    Password: <input type="password"
+                     name="password"
+                     ng-model="password"/>
+    Password: <input type="password"
+                     name="password-repeat"
+                     ng-model="passwordRepeat"/>
+    <button ng-click="register()"
+            ng-show="username.length > 0 && password.length > 0 && passwordRepeat.length > 0">
+        Register
+    </button>
+</form>

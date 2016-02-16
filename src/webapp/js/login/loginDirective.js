@@ -1,6 +1,6 @@
 (function (){
     angular
-        .module('todo-app')
+        .module('todoApp')
         .directive('loginForm', ['$auth', '$location', function(
                 $auth,
                 $location
