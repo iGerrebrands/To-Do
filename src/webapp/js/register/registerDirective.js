@@ -7,6 +7,8 @@
             return {
                 templateUrl: 'build/js/register/registerFormView.html',
                 link : function (scope) {
+                    scope.messageClass = "register-message";
+                    scope.buttonClass = "button-disabled";
                     scope.register = function () {
                         var register = registerService.validate(scope.username, scope.password, scope.passwordRepeat);
                         if (register.valid) {
@@ -15,10 +17,15 @@
                                     scope.message = val.data.message;
                                 });
                         } else {
+                            scope.messageClass = "register-message-warning";
                             scope.message = register.message;
                         }
                     };
-
+                    scope.checkButton = function () {
+                        if (scope.username.length > 0 && scope.password.length > 0 && scope.passwordRepeat.length > 0) {
+                            scope.buttonClass = "button-enabled";
+                        }
+                    }
                 }
             }
         }]);

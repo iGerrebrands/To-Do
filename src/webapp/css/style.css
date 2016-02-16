@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  color: #2b2301;
+  font-weight: bolder;
+  font-size: 60px; }
+
+h2 {
+  color: #5e9ca0; }
+
+p {
+  color: #ff7148; }
+
+button {
+  background-color: whitesmoke;
+  border: 1px solid #73afb6;
+  font-weight: bold;
+  text-align: center;
+  line-height: 5px;
+  padding: 10px;
+  border-radius: 2px;
+  display: block;
+  height: 30px;
+  margin: 10px auto; }
+
+.button-enabled {
+  pointer-events: auto;
+  border: 1px solid #73afb6; }
+
+.button-disabled {
+  opacity: 0.5;
+  pointer-events: none; }
+
+.login-title {
+  text-align: center;
+  padding-bottom: 10px; }
+
+.login-message, .login-message-warning {
+  color: #ff7148;
+  padding: 10px;
+  font-size: 130%;
+  font-weight: bold;
+  text-align: center; }
+
+.login-message-warning {
+  color: #ca171b; }
+
+.login-form {
+  margin: 10px auto;
+  width: 300px; }
+  .login-form input {
+    border: 1px solid #73afb6;
+    width: 80%;
+    text-align: center;
+    font-weight: bolder;
+    margin: 10px auto;
+    display: block; }
+
+.register-title {
+  margin-left: 10px;
+  padding-bottom: 10px; }
+
+.register-message, .register-message-warning {
+  color: #ff7148;
+  font-weight: bold;
+  margin-left: 15px; }
+
+.register-message-warning {
+  color: #ca171b; }
+
+.register-form {
+  margin: 10px 15px;
+  width: 50%; }
