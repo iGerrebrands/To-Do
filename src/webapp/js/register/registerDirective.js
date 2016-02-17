@@ -12,7 +12,7 @@
                     scope.register = function () {
                         var register = registerService.validate(scope.username, scope.password, scope.passwordRepeat);
                         if (register.valid) {
-                            registerService.send({username: scope.username, password: scope.password, passwordRepeat: scope.passwordRepeat})
+                            registerService.send({ username: scope.username, password: scope.password, passwordRepeat: scope.passwordRepeat })
                                 .then(function (val) {
                                     scope.message = val.data.message;
                                 });
