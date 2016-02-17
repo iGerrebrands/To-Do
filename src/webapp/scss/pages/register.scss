@@ -1,0 +1,20 @@
+.register-title{
+  margin-left: 10px;
+  padding-bottom: 10px;
+}
+
+.register-message{
+  color: $orange;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.register-message-warning{
+  @extend .register-message;
+  color: $red;
+}
+
+.register-form{
+  margin: 10px 15px;
+  width: 50%;
+}
