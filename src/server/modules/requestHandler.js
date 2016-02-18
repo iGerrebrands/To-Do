@@ -2,7 +2,7 @@ exports.handler = {
     version: "0.0.1",
     REQUEST: {
         LOGIN: ["username", "password"],
-        REGISTER: ["username", "password"],
+        REGISTER: ["username", "password", "passwordRepeat"],
         CREATETODO: ["title", "text"]
     },
     validateRequest: function (request, data, res) {
