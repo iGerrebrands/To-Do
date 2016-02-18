@@ -28,8 +28,9 @@
                         }
                     }
                 })
-                .when('/test', {
-                    templateUrl: 'build/js/register/registerView.html',
+                .when('/todo', {
+                    template: '<h1>PAGE NOT READY YET</h1>',
+                    //templateUrl: 'build/js/todo/todoView.html',
                     access: {
                         required: {
                             login: true,

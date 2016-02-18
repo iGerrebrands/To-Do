@@ -1,1 +1,9 @@
-<div login-form></div>
+<div login-form>
+    <h1 class="login-title">Login Form</h1>
+    <p ng-class="messageClass">{{message}}</p>
+    <form class="login-form" name="login-form">
+        <input class="form-control" type="text" name="username" ng-model="username" placeholder="Username"/>
+        <input class="form-control" type="password" name="password" ng-model="password" placeholder="Password"/>
+        <button class="btn-default" ng-click="login()">Login</button>
+    </form>
+</div>

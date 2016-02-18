@@ -5,7 +5,7 @@
             registerService
         ){
             return {
-                templateUrl: 'build/js/register/registerFormView.html',
+                restrict: 'A',
                 link : function (scope) {
                     scope.messageClass = "register-message";
                     scope.buttonClass = "button-disabled";
