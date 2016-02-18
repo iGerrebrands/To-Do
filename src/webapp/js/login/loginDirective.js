@@ -6,7 +6,7 @@
                 $location
             ) {
                 return {
-                    templateUrl: 'build/js/login/loginFormView.html',
+                    restrict: 'A',
                     link: function (scope) {
 
                         scope.message = "Please fill in your login credentials.";
@@ -18,7 +18,7 @@
                                 password: scope.password
                             })
                             .then(function () {
-                                $location.path("/test");
+                                $location.path("/todo");
                             })
                             .catch(function (response) {
                                 switch(response.status){
