@@ -22,7 +22,7 @@
                         }
                     };
                     scope.checkButton = function () {
-                        if (scope.username.length > 0 && scope.password.length > 0 && scope.passwordRepeat.length > 0) {
+                        if (scope.username && scope.password && scope.passwordRepeat) {
                             scope.buttonClass = "button-enabled";
                         }
                     }
