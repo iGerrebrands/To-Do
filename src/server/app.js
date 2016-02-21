@@ -104,34 +104,49 @@ var db = mongoose.connection;
                 }
             })
             .get('/todo', function (req, res) {
-                if (typeof req.query.type === String){
-                    switch(req.query.type.toLowerCase()){
+                if (req.query.action){
+                    switch(req.query.action){
                         case "create":
+                            console.log("create");
                             if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.CREATETODO, req.query, res)) {
                                 var todo = new Todo({ text: req.query.text});
                                 todo.save();
+                                console.log("saved");
                                 res.send("Todo Saved!");
                             }
                             break;
                         case "delete":
                             if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.DELETETODO, req.query, res)) {
-                                //TODO: Delete todo
+                                Todo.findOne({ _id: req.query.id }, function (err, doc){
+                                    if(doc){
+                                        doc.remove();
+                                        res.send("Deleted");
+                                    } else {
+                                        res.send("This todo is already deleted!");
+                                    }
+                                });
                             }
                             break;
-                        case "edit":
+                        case "update":
+                            //TODO: Test update
                             if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.UPDATETODO, req.query, res)) {
-                                //TODO: Update todo
+                                Todo.findOne({ _id: req.query.id }, function (err, doc){
+                                    if(doc){
+                                        doc.text = req.query.text;
+                                        doc.save();
+                                    }
+                                });
                             }
                             break;
                         case "get":
-                            if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.GETTODO, req.query, res)) {
-                                //TODO: Get todo
-                            }
+                            //TODO: Check on id if id is null give all
                             break;
                         default:
                             //TODO: Error message
                             break;
                     }
+                } else {
+                    //TODO: ERROR message
                 }
 
 

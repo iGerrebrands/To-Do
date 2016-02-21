@@ -3,10 +3,9 @@ exports.handler = {
     REQUEST: {
         LOGIN: ["username", "password"],
         REGISTER: ["username", "password", "passwordRepeat"],
-        GETTODO: ["id"],
-        UPDATETODO: ["id", "text"],
-        CREATETODO: ["text"],
-        DELETETODO: ["id"]
+        UPDATETODO: ["action","id", "text"],
+        CREATETODO: ["action","text"],
+        DELETETODO: ["action","id"]
     },
     validateRequest: function (request, data, res) {
         for(var i=0; i<request.length; i++){
