@@ -22,7 +22,12 @@ var db = mongoose.connection;
             role: { type: String, required: true}
         });
 
+        var todoSchema = mongoose.Schema({
+            text: { type: String, required: true}
+        });
+
         var User = mongoose.model('User', userSchema);
+        var Todo = mongoose.model('Todo', todoSchema);
 
         var user = new User({ username: "ian10013", password: "password", role: "admin" });
         user.save();
@@ -98,7 +103,42 @@ var db = mongoose.connection;
                     });
                 }
             })
+            .get('/todo', function (req, res) {
+                if (typeof req.query.type === String){
+                    switch(req.query.type.toLowerCase()){
+                        case "create":
+                            if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.CREATETODO, req.query, res)) {
+                                var todo = new Todo({ text: req.query.text});
+                                todo.save();
+                                res.send("Todo Saved!");
+                            }
+                            break;
+                        case "delete":
+                            if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.DELETETODO, req.query, res)) {
+                                //TODO: Delete todo
+                            }
+                            break;
+                        case "edit":
+                            if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.UPDATETODO, req.query, res)) {
+                                //TODO: Update todo
+                            }
+                            break;
+                        case "get":
+                            if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.GETTODO, req.query, res)) {
+                                //TODO: Get todo
+                            }
+                            break;
+                        default:
+                            //TODO: Error message
+                            break;
+                    }
+                }
+
+
+
+            })
             .get('/data', function (req, res) {
+                res.send("HELLO");
                 if(req.query.id != undefined) {
 
                 }
