@@ -51,6 +51,7 @@ var db = mongoose.connection;
                 if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.LOGIN, req.body, res)) {
                     var username = req.body.username;
                     var password = req.body.password;
+                    //TODO: Refactore use findOne
                     User.find({username: username, password: password })
                         .exec( function (err, doc) {
                             if (doc.length > 0) {
@@ -128,18 +129,26 @@ var db = mongoose.connection;
                             }
                             break;
                         case "update":
-                            //TODO: Test update
                             if (requestHandler.handler.validateRequest(requestHandler.handler.REQUEST.UPDATETODO, req.query, res)) {
                                 Todo.findOne({ _id: req.query.id }, function (err, doc){
                                     if(doc){
                                         doc.text = req.query.text;
                                         doc.save();
+                                        res.send("Updated");
                                     }
                                 });
                             }
                             break;
                         case "get":
-                            //TODO: Check on id if id is null give all
+                            if (req.query.id) {
+                                Todo.findOne({ _id: req.query.id }, function (err, doc) {
+                                    res.json(doc);
+                                });
+                            } else {
+                                Todo.find({}, function (err, doc){
+                                    res.jsonp(doc);
+                                });
+                            }
                             break;
                         default:
                             //TODO: Error message
