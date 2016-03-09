@@ -22,7 +22,7 @@
 
             this.send = function (data) {
                 return $http
-                        .post("http://localhost:6005/register", data);
+                        .post("http://localhost:6001/register", data);
             };
         }]);
 })();
