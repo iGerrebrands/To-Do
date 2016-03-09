@@ -12,7 +12,7 @@ module.exports = {
         this.app.post('/auth', require('./routes/auth'));
         this.app.post('/register', require('./routes/register'));
 
-        this.app.get('/todo/:id/:userid', require('./routes/todo/todoGet'));
+        this.app.get('/todo', require('./routes/todo/todoGet'));
         this.app.post('/todo/create', require('./routes/todo/todoCreate'));
         this.app.post('/todo/delete', require('./routes/todo/todoDelete'));
         this.app.post('/todo/update', require('./routes/todo/todoUpdate'));

@@ -1,8 +1,8 @@
 var todo = require('../../../db/Todo');
 
 module.exports = function (req, res) {
-    if (req.params.id) {
-        todo.findOne({ _id: req.params.id, user_id: req.params.userid }, function (err, doc) {
+    if (req.query.id) {
+        todo.findOne({ _id: req.query.id, user_id: req.query.userid }, function (err, doc) {
             if (doc){
                 res.json({
                     successful: true,
@@ -17,7 +17,7 @@ module.exports = function (req, res) {
 
         });
     } else {
-        todo.find({user_id: req.params.userid}, function (err, doc){
+        todo.find({user_id: req.query.userid}, function (err, doc){
             if (doc.length > 0){
                 res.json({
                     successful: true,
