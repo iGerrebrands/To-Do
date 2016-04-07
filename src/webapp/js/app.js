@@ -8,7 +8,7 @@
             $routeProvider,
             $authProvider
         ) {
-            $authProvider.loginUrl = 'http://localhost:6005/auth';
+            $authProvider.loginUrl = 'http://localhost:6001/auth';
             $routeProvider
                 .when('/', {
                     templateUrl: 'build/js/login/loginView.html',
