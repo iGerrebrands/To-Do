@@ -3,8 +3,11 @@ module.exports = {
         LOGIN: ['username', 'password'],
         REGISTER: ['username', 'password', 'passwordRepeat'],
         UPDATETODO: ['id', 'text'],
-        CREATETODO: ['text'],
-        DELETETODO: ['id']
+        CREATETODO: ['text','listid'],
+        DELETETODO: ['id'],
+        CREATETODOLIST: ['title'],
+        DELETETODOLIST: ['id'],
+        UPDATETODOLIST: ['id', 'title']
     },
     validateRequest: function (request, data, res) {
         for(var i=0; i<request.length; i++){
